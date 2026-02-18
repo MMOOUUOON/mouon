@@ -891,19 +891,14 @@ strong {
     color: #ea7600;
 }
 
-.skill-card__icon--pr {
-    background: rgba(34, 197, 94, 0.15);
-    color: #22c55e;
-}
-
 .skill-card__icon--ue {
     background: rgba(167, 139, 250, 0.15);
     color: #a78bfa;
 }
 
-.skill-card__icon--ai {
-    background: rgba(255, 154, 0, 0.15);
-    color: #ff9a00;
+.skill-card__icon--unity {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
 }
 
 .skill-card__title {
