@@ -1,9 +1,10 @@
 /* =============================================
-   Portfolio - Interactive JavaScript
-   Background Concept Designer
+   MOUON — Background Concept Designer
+   Interactive JavaScript
    ============================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
+    initParticles();
     initTypingAnimation();
     initScrollAnimations();
     initNavigation();
@@ -12,24 +13,98 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =============================================
-   TYPING ANIMATION
+   CANVAS PARTICLES (Floating dust/stars)
+   ============================================= */
+function initParticles() {
+    const canvas = document.getElementById('particles-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animId;
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    class Particle {
+        constructor() {
+            this.reset();
+        }
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 0.5;
+            this.speedX = (Math.random() - 0.5) * 0.3;
+            this.speedY = (Math.random() - 0.5) * 0.3;
+            this.opacity = Math.random() * 0.4 + 0.1;
+            this.flickerSpeed = Math.random() * 0.02 + 0.005;
+            this.flickerOffset = Math.random() * Math.PI * 2;
+            this.hue = 35 + Math.random() * 15; // warm gold range
+        }
+        update(time) {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.currentOpacity = this.opacity * (0.5 + 0.5 * Math.sin(time * this.flickerSpeed + this.flickerOffset));
+
+            if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                this.reset();
+            }
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = `hsla(${this.hue}, 60%, 65%, ${this.currentOpacity})`;
+            ctx.fill();
+
+            if (this.size > 1.2) {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+                ctx.fillStyle = `hsla(${this.hue}, 60%, 65%, ${this.currentOpacity * 0.15})`;
+                ctx.fill();
+            }
+        }
+    }
+
+    const count = Math.min(80, Math.floor(window.innerWidth / 15));
+    for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+    }
+
+    let time = 0;
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        time++;
+        particles.forEach(p => {
+            p.update(time);
+            p.draw();
+        });
+        animId = requestAnimationFrame(animate);
+    }
+    animate();
+}
+
+/* =============================================
+   TYPING ANIMATION (Bilingual)
    ============================================= */
 function initTypingAnimation() {
     const typingElement = document.getElementById('typing-text');
     if (!typingElement) return;
 
     const words = [
-        'fantasy worlds ✨',
-        'cinematic landscapes 🎬',
-        'immersive environments 🌄',
-        'atmospheric scenes 🌙',
-        'visual stories 🎨'
+        'crafting fantasy worlds ✨ 판타지 세계',
+        'cinematic landscapes 🎬 시네마틱 풍경',
+        'atmospheric environments 🌄 분위기 있는 환경',
+        'immersive game worlds 🎮 몰입감 있는 게임 월드',
+        'visual storytelling 🎨 비주얼 스토리텔링'
     ];
 
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    let typeSpeed = 100;
+    let typeSpeed = 80;
 
     function type() {
         const currentWord = words[wordIndex];
@@ -37,20 +112,20 @@ function initTypingAnimation() {
         if (isDeleting) {
             typingElement.textContent = currentWord.substring(0, charIndex - 1);
             charIndex--;
-            typeSpeed = 50;
+            typeSpeed = 40;
         } else {
             typingElement.textContent = currentWord.substring(0, charIndex + 1);
             charIndex++;
-            typeSpeed = 100;
+            typeSpeed = 80;
         }
 
         if (!isDeleting && charIndex === currentWord.length) {
-            typeSpeed = 2000;
+            typeSpeed = 2500;
             isDeleting = true;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             wordIndex = (wordIndex + 1) % words.length;
-            typeSpeed = 500;
+            typeSpeed = 300;
         }
 
         setTimeout(type, typeSpeed);
@@ -60,21 +135,14 @@ function initTypingAnimation() {
 }
 
 /* =============================================
-   SCROLL ANIMATIONS (Intersection Observer)
+   SCROLL ANIMATIONS
    ============================================= */
 function initScrollAnimations() {
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px 0px -80px 0px',
-        threshold: 0.1
-    };
-
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
 
-                // Trigger skill bar animation
                 if (entry.target.classList.contains('skill-card')) {
                     const progressBar = entry.target.querySelector('.skill-card__progress');
                     if (progressBar) {
@@ -86,11 +154,9 @@ function initScrollAnimations() {
                 }
             }
         });
-    }, observerOptions);
+    }, { root: null, rootMargin: '0px 0px -60px 0px', threshold: 0.1 });
 
-    document.querySelectorAll('.animate-on-scroll').forEach(el => {
-        observer.observe(el);
-    });
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 }
 
 /* =============================================
@@ -102,16 +168,10 @@ function initNavigation() {
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav__link');
 
-    // Scroll effect
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('header--scrolled');
-        } else {
-            header.classList.remove('header--scrolled');
-        }
+        header.classList.toggle('header--scrolled', window.scrollY > 50);
     });
 
-    // Mobile toggle
     if (navToggle) {
         navToggle.addEventListener('click', () => {
             navMenu.classList.toggle('is-open');
@@ -120,7 +180,6 @@ function initNavigation() {
         });
     }
 
-    // Close on link click
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('is-open');
@@ -139,11 +198,7 @@ function initNavigation() {
             const id = section.getAttribute('id');
             const link = document.querySelector(`.nav__link[href="#${id}"]`);
             if (link) {
-                if (scrollY >= top && scrollY < top + height) {
-                    link.classList.add('nav__link--active');
-                } else {
-                    link.classList.remove('nav__link--active');
-                }
+                link.classList.toggle('nav__link--active', scrollY >= top && scrollY < top + height);
             }
         });
     });
@@ -154,39 +209,30 @@ function initNavigation() {
    ============================================= */
 function initCounterAnimation() {
     const counters = document.querySelectorAll('.stat-card__number');
-
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const counter = entry.target;
-                const target = parseInt(counter.getAttribute('data-target'));
-                animateCounter(counter, target);
-                observer.unobserve(counter);
+                const el = entry.target;
+                const target = parseInt(el.getAttribute('data-target'));
+                animateCounter(el, target);
+                observer.unobserve(el);
             }
         });
     }, { threshold: 0.5 });
-
-    counters.forEach(counter => observer.observe(counter));
+    counters.forEach(c => observer.observe(c));
 }
 
 function animateCounter(element, target) {
     const duration = 2000;
-    const startTime = performance.now();
-
-    function update(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
+    const start = performance.now();
+    function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
         const eased = 1 - Math.pow(1 - progress, 3);
         element.textContent = Math.floor(eased * target);
-
-        if (progress < 1) {
-            requestAnimationFrame(update);
-        } else {
-            element.textContent = target;
-        }
+        if (progress < 1) requestAnimationFrame(step);
+        else element.textContent = target;
     }
-
-    requestAnimationFrame(update);
+    requestAnimationFrame(step);
 }
 
 /* =============================================
@@ -198,79 +244,64 @@ function initContactForm() {
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
         const message = document.getElementById('message').value.trim();
 
         if (!name || !email || !message) {
-            showNotification('Please fill in all fields.', 'error');
+            showNotification('모든 항목을 입력해주세요. Please fill in all fields.', 'error');
             return;
         }
-
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            showNotification('Please enter a valid email address.', 'error');
+            showNotification('올바른 이메일을 입력해주세요. Please enter a valid email.', 'error');
             return;
         }
 
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<span>Sending...</span>';
-        submitBtn.disabled = true;
+        const btn = form.querySelector('button[type="submit"]');
+        const original = btn.innerHTML;
+        btn.innerHTML = '<span>Sending... · 전송 중...</span>';
+        btn.disabled = true;
 
         setTimeout(() => {
-            showNotification('Message sent successfully! 🎉', 'success');
+            showNotification('메시지가 전송되었습니다! Message sent! 🎉', 'success');
             form.reset();
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
+            btn.innerHTML = original;
+            btn.disabled = false;
         }, 1500);
     });
 }
 
 function showNotification(message, type) {
-    const existing = document.querySelector('.notification');
-    if (existing) existing.remove();
+    const old = document.querySelector('.notification');
+    if (old) old.remove();
 
-    const notification = document.createElement('div');
-    notification.className = `notification notification--${type}`;
-    notification.textContent = message;
+    const el = document.createElement('div');
+    el.className = `notification notification--${type}`;
+    el.textContent = message;
 
-    Object.assign(notification.style, {
-        position: 'fixed',
-        bottom: '24px',
-        right: '24px',
-        padding: '16px 24px',
-        borderRadius: '12px',
-        fontSize: '14px',
-        fontWeight: '500',
-        zIndex: '9999',
-        transform: 'translateY(100px)',
-        opacity: '0',
-        transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-        backdropFilter: 'blur(20px)',
-        maxWidth: '400px'
+    Object.assign(el.style, {
+        position: 'fixed', bottom: '24px', right: '24px',
+        padding: '16px 24px', borderRadius: '12px', fontSize: '14px',
+        fontWeight: '500', zIndex: '9999', transform: 'translateY(100px)',
+        opacity: '0', transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+        backdropFilter: 'blur(20px)', maxWidth: '400px',
+        fontFamily: "'Inter', 'Noto Sans KR', sans-serif"
     });
 
     if (type === 'success') {
-        notification.style.background = 'rgba(34, 197, 94, 0.15)';
-        notification.style.border = '1px solid rgba(34, 197, 94, 0.3)';
-        notification.style.color = '#86efac';
+        el.style.background = 'rgba(217, 170, 100, 0.15)';
+        el.style.border = '1px solid rgba(217, 170, 100, 0.3)';
+        el.style.color = '#d9aa64';
     } else {
-        notification.style.background = 'rgba(239, 68, 68, 0.15)';
-        notification.style.border = '1px solid rgba(239, 68, 68, 0.3)';
-        notification.style.color = '#fca5a5';
+        el.style.background = 'rgba(239, 68, 68, 0.15)';
+        el.style.border = '1px solid rgba(239, 68, 68, 0.3)';
+        el.style.color = '#fca5a5';
     }
 
-    document.body.appendChild(notification);
-
-    requestAnimationFrame(() => {
-        notification.style.transform = 'translateY(0)';
-        notification.style.opacity = '1';
-    });
-
+    document.body.appendChild(el);
+    requestAnimationFrame(() => { el.style.transform = 'translateY(0)'; el.style.opacity = '1'; });
     setTimeout(() => {
-        notification.style.transform = 'translateY(100px)';
-        notification.style.opacity = '0';
-        setTimeout(() => notification.remove(), 400);
+        el.style.transform = 'translateY(100px)'; el.style.opacity = '0';
+        setTimeout(() => el.remove(), 400);
     }, 3000);
 }

@@ -4,35 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Background Concept Designer Portfolio - Crafting immersive worlds and breathtaking environments for games, films, and visual storytelling.">
-    <meta property="og:title" content="Background Concept Designer | Portfolio">
-    <meta property="og:description" content="Crafting immersive worlds and breathtaking environments">
+    <meta name="description" content="MOUON — Background Concept Designer | 배경 컨셉 디자이너 포트폴리오">
+    <meta property="og:title" content="MOUON | Background Concept Designer">
+    <meta property="og:description" content="Crafting immersive worlds — 몰입감 있는 세계를 만듭니다">
     <meta property="og:type" content="website">
-    <title>Background Concept Designer | Portfolio</title>
+    <title>MOUON | Background Concept Designer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&family=Playfair+Display:wght@700;800;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- Animated Background -->
-    <div class="bg-animation">
-        <div class="bg-orb bg-orb--1"></div>
-        <div class="bg-orb bg-orb--2"></div>
-        <div class="bg-orb bg-orb--3"></div>
-    </div>
+    <!-- Particle Canvas Background -->
+    <canvas id="particles-canvas"></canvas>
 
     <!-- Navigation -->
     <header class="header" id="header">
         <nav class="nav container">
             <a href="#hero" class="nav__logo">
-                <span class="nav__logo-bracket">&lt;</span>
-                <span class="nav__logo-text">BG</span>
-                <span class="nav__logo-bracket">/&gt;</span>
+                MOUON<span class="nav__logo-dot">.</span>
             </a>
             <ul class="nav__menu" id="nav-menu">
                 <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
@@ -51,61 +44,64 @@
     <main>
         <!-- Hero Section -->
         <section class="hero" id="hero">
+            <div class="hero__vignette"></div>
             <div class="container hero__container">
                 <div class="hero__content">
-                    <p class="hero__greeting">Hello, I'm a</p>
-                    <h1 class="hero__name">
-                        <span class="hero__name-first">Background</span>
-                        <span class="hero__name-last">Concept Designer</span>
-                    </h1>
+                    <p class="hero__greeting">
+                        <span class="hero__greeting-en">Hello, I'm</span>
+                        <span class="hero__greeting-kr">안녕하세요,</span>
+                    </p>
+                    <h1 class="hero__name">MOUON</h1>
+                    <h2 class="hero__title">
+                        <span class="hero__title-en">Background Concept Designer</span>
+                        <span class="hero__title-kr">배경 컨셉 디자이너</span>
+                    </h2>
                     <div class="hero__typing">
-                        <span class="hero__typing-static">I create </span>
                         <span class="hero__typing-dynamic" id="typing-text"></span>
                         <span class="hero__typing-cursor">|</span>
                     </div>
                     <p class="hero__description">
                         Crafting immersive worlds and breathtaking environments
-                        for games, films, and visual storytelling. Every scene
-                        tells a story — I bring that story to life.
+                        for games, films, and visual storytelling.
+                    </p>
+                    <p class="hero__description hero__description--kr">
+                        게임, 영화, 비주얼 스토리텔링을 위한
+                        몰입감 있는 세계와 환경을 디자인합니다.
                     </p>
                     <div class="hero__actions">
                         <a href="#projects" class="btn btn--primary">
-                            <span>View My Work</span>
+                            <span>View Works · 작품 보기</span>
                             <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
                                 <path d="M5 12h14M12 5l7 7-7 7" />
                             </svg>
                         </a>
-                        <a href="#contact" class="btn btn--outline">Get In Touch</a>
+                        <a href="#contact" class="btn btn--outline">Contact · 연락하기</a>
                     </div>
                 </div>
                 <div class="hero__visual">
                     <div class="hero__art-frame">
                         <div class="hero__art-scene">
-                            <!-- Parallax landscape art with CSS -->
                             <div class="art-layer art-layer--sky"></div>
-                            <div class="art-layer art-layer--mountains"></div>
-                            <div class="art-layer art-layer--hills"></div>
+                            <div class="art-layer art-layer--sun"></div>
+                            <div class="art-layer art-layer--clouds"></div>
+                            <div class="art-layer art-layer--mountains-far"></div>
+                            <div class="art-layer art-layer--mountains-mid"></div>
+                            <div class="art-layer art-layer--mountains-near"></div>
+                            <div class="art-layer art-layer--mist"></div>
                             <div class="art-layer art-layer--trees"></div>
                             <div class="art-layer art-layer--ground"></div>
-                            <div class="art-layer art-layer--stars">
-                                <span></span><span></span><span></span>
-                                <span></span><span></span><span></span>
-                                <span></span><span></span><span></span>
-                            </div>
                         </div>
                         <div class="hero__art-label">
-                            <span class="hero__art-tag">Fantasy Landscape</span>
-                            <span class="hero__art-year">2026</span>
+                            <span class="hero__art-tag">Golden Valley · 황금빛 계곡</span>
+                            <span class="hero__art-year">Concept Art</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="hero__scroll">
-                <span>Scroll Down</span>
-                <div class="hero__scroll-indicator">
-                    <div class="hero__scroll-dot"></div>
-                </div>
+                <span>Scroll</span>
+                <div class="hero__scroll-line"></div>
             </div>
         </section>
 
@@ -113,49 +109,64 @@
         <section class="section about" id="about">
             <div class="container">
                 <h2 class="section__title animate-on-scroll">
-                    <span class="section__title-number">01.</span> About Me
+                    <span class="section__title-number">01.</span>
+                    <span>About Me <span class="section__title-kr">소개</span></span>
                 </h2>
                 <div class="about__grid">
                     <div class="about__image-wrapper animate-on-scroll">
                         <div class="about__image-container">
                             <div class="about__image-placeholder">
-                                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="100" cy="80" r="40" fill="rgba(139, 92, 246, 0.3)"
-                                        stroke="rgba(139, 92, 246, 0.6)" stroke-width="2" />
-                                    <path d="M40 180c0-33.137 26.863-60 60-60s60 26.863 60 60"
-                                        fill="rgba(139, 92, 246, 0.2)" stroke="rgba(139, 92, 246, 0.6)"
-                                        stroke-width="2" />
-                                </svg>
+                                <div class="about__avatar">
+                                    <div class="avatar__brush">
+                                        <span class="avatar__brush-stroke"></span>
+                                        <span class="avatar__brush-stroke"></span>
+                                        <span class="avatar__brush-stroke"></span>
+                                    </div>
+                                    <svg viewBox="0 0 200 200" fill="none">
+                                        <circle cx="100" cy="80" r="35" fill="rgba(217, 170, 100, 0.3)"
+                                            stroke="rgba(217, 170, 100, 0.6)" stroke-width="2" />
+                                        <path d="M45 175c0-30.376 24.624-55 55-55s55 24.624 55 55"
+                                            fill="rgba(217, 170, 100, 0.2)" stroke="rgba(217, 170, 100, 0.6)"
+                                            stroke-width="2" />
+                                    </svg>
+                                </div>
                             </div>
                             <div class="about__image-border"></div>
                         </div>
                     </div>
                     <div class="about__content animate-on-scroll">
                         <p class="about__text">
-                            I'm a Background Concept Designer specializing in building
-                            rich, atmospheric environments for interactive and cinematic
-                            media. From sweeping fantasy landscapes to gritty cyberpunk
-                            alleyways, I design worlds that players and viewers want to
-                            step into.
+                            I'm a <strong>Background Concept Designer</strong> specializing in
+                            atmospheric environments for interactive and cinematic media.
+                            From sweeping fantasy landscapes to gritty cyberpunk alleyways,
+                            I design worlds that players and viewers want to step into.
+                        </p>
+                        <p class="about__text about__text--kr">
+                            저는 인터랙티브 미디어와 영상 분야를 위한 <strong>배경 컨셉 디자이너</strong>입니다.
+                            광활한 판타지 풍경부터 어두운 사이버펑크 골목까지,
+                            플레이어와 시청자가 들어가고 싶어지는 세계를 디자인합니다.
                         </p>
                         <p class="about__text">
                             With a keen eye for composition, lighting, and narrative design,
-                            I transform rough ideas into fully realized visual worlds. I work
-                            across multiple styles — from painterly realism to stylized art
-                            directions — always driven by story and emotion.
+                            I transform ideas into fully realized visual worlds — always
+                            driven by story and emotion.
+                        </p>
+                        <p class="about__text about__text--kr">
+                            구도, 조명, 내러티브 디자인에 대한 예리한 시각으로
+                            아이디어를 완성된 비주얼 월드로 구현합니다.
                         </p>
                         <div class="about__stats">
                             <div class="stat-card">
                                 <span class="stat-card__number" data-target="50">0</span>
-                                <span class="stat-card__label">Artworks</span>
+                                <span class="stat-card__label">Artworks · 작품</span>
                             </div>
                             <div class="stat-card">
                                 <span class="stat-card__number" data-target="8">0</span>
-                                <span class="stat-card__label">Tools</span>
+                                <span class="stat-card__label">Tools · 도구</span>
                             </div>
                             <div class="stat-card">
                                 <span class="stat-card__number" data-target="12">0</span>
-                                <span class="stat-card__label">Projects</span>
+                                <span class="stat-card__label">Projects · 프로젝트</span>
                             </div>
                         </div>
                     </div>
@@ -167,15 +178,14 @@
         <section class="section skills" id="skills">
             <div class="container">
                 <h2 class="section__title animate-on-scroll">
-                    <span class="section__title-number">02.</span> Skills & Tools
+                    <span class="section__title-number">02.</span>
+                    <span>Skills & Tools <span class="section__title-kr">기술 & 도구</span></span>
                 </h2>
                 <div class="skills__grid">
                     <div class="skill-card animate-on-scroll" style="--delay: 0.1s">
-                        <div class="skill-card__icon skill-card__icon--ps">
-                            <span>Ps</span>
-                        </div>
+                        <div class="skill-card__icon skill-card__icon--ps"><span>Ps</span></div>
                         <h3 class="skill-card__title">Photoshop</h3>
-                        <p class="skill-card__desc">Digital painting, photo-bashing, matte painting</p>
+                        <p class="skill-card__desc">Digital painting · Matte painting<br>디지털 페인팅 · 매트 페인팅</p>
                         <div class="skill-card__bar">
                             <div class="skill-card__progress" data-width="95" style="--bar-color: #31a8ff"></div>
                         </div>
@@ -183,11 +193,9 @@
                     </div>
 
                     <div class="skill-card animate-on-scroll" style="--delay: 0.2s">
-                        <div class="skill-card__icon skill-card__icon--bl">
-                            <span>Bl</span>
-                        </div>
+                        <div class="skill-card__icon skill-card__icon--bl"><span>Bl</span></div>
                         <h3 class="skill-card__title">Blender</h3>
-                        <p class="skill-card__desc">3D modeling, scene layout, rendering</p>
+                        <p class="skill-card__desc">3D Modeling · Scene Layout<br>3D 모델링 · 씬 레이아웃</p>
                         <div class="skill-card__bar">
                             <div class="skill-card__progress" data-width="85" style="--bar-color: #ea7600"></div>
                         </div>
@@ -195,11 +203,9 @@
                     </div>
 
                     <div class="skill-card animate-on-scroll" style="--delay: 0.3s">
-                        <div class="skill-card__icon skill-card__icon--pr">
-                            <span>Pr</span>
-                        </div>
+                        <div class="skill-card__icon skill-card__icon--pr"><span>Pr</span></div>
                         <h3 class="skill-card__title">Procreate</h3>
-                        <p class="skill-card__desc">Sketching, thumbnails, quick concepts</p>
+                        <p class="skill-card__desc">Quick Concepts · Thumbnails<br>빠른 컨셉 · 썸네일</p>
                         <div class="skill-card__bar">
                             <div class="skill-card__progress" data-width="80" style="--bar-color: #22c55e"></div>
                         </div>
@@ -207,23 +213,19 @@
                     </div>
 
                     <div class="skill-card animate-on-scroll" style="--delay: 0.4s">
-                        <div class="skill-card__icon skill-card__icon--ue">
-                            <span>UE</span>
-                        </div>
+                        <div class="skill-card__icon skill-card__icon--ue"><span>UE</span></div>
                         <h3 class="skill-card__title">Unreal Engine</h3>
-                        <p class="skill-card__desc">Real-time environments, virtual production</p>
+                        <p class="skill-card__desc">Real-time Environments<br>실시간 환경 구현</p>
                         <div class="skill-card__bar">
-                            <div class="skill-card__progress" data-width="70" style="--bar-color: #8b5cf6"></div>
+                            <div class="skill-card__progress" data-width="70" style="--bar-color: #a78bfa"></div>
                         </div>
                         <span class="skill-card__percent">70%</span>
                     </div>
 
                     <div class="skill-card animate-on-scroll" style="--delay: 0.5s">
-                        <div class="skill-card__icon skill-card__icon--ai">
-                            <span>Ai</span>
-                        </div>
+                        <div class="skill-card__icon skill-card__icon--ai"><span>Ai</span></div>
                         <h3 class="skill-card__title">Illustrator</h3>
-                        <p class="skill-card__desc">Vector art, UI assets, graphic design</p>
+                        <p class="skill-card__desc">Vector Art · UI Assets<br>벡터 아트 · UI 에셋</p>
                         <div class="skill-card__bar">
                             <div class="skill-card__progress" data-width="75" style="--bar-color: #ff9a00"></div>
                         </div>
@@ -231,20 +233,18 @@
                     </div>
                 </div>
 
-                <!-- Additional Competencies -->
+                <!-- Competencies -->
                 <div class="skills__tags animate-on-scroll" style="--delay: 0.3s">
-                    <h3 class="skills__tags-title">Core Competencies</h3>
+                    <h3 class="skills__tags-title">Core Competencies · 핵심 역량</h3>
                     <div class="skills__tag-cloud">
-                        <span class="competency-tag">Environment Design</span>
-                        <span class="competency-tag">Color Theory</span>
-                        <span class="competency-tag">Composition</span>
-                        <span class="competency-tag">Atmospheric Lighting</span>
-                        <span class="competency-tag">Matte Painting</span>
-                        <span class="competency-tag">Visual Storytelling</span>
-                        <span class="competency-tag">World Building</span>
-                        <span class="competency-tag">Prop Design</span>
-                        <span class="competency-tag">Mood Boards</span>
-                        <span class="competency-tag">Style Guides</span>
+                        <span class="competency-tag">Environment Design · 환경 디자인</span>
+                        <span class="competency-tag">Color Theory · 색채 이론</span>
+                        <span class="competency-tag">Composition · 구도</span>
+                        <span class="competency-tag">Atmospheric Lighting · 분위기 조명</span>
+                        <span class="competency-tag">Matte Painting · 매트 페인팅</span>
+                        <span class="competency-tag">Visual Storytelling · 비주얼 스토리텔링</span>
+                        <span class="competency-tag">World Building · 월드빌딩</span>
+                        <span class="competency-tag">Prop Design · 소품 디자인</span>
                     </div>
                 </div>
             </div>
@@ -254,7 +254,8 @@
         <section class="section projects" id="projects">
             <div class="container">
                 <h2 class="section__title animate-on-scroll">
-                    <span class="section__title-number">03.</span> Selected Works
+                    <span class="section__title-number">03.</span>
+                    <span>Selected Works <span class="section__title-kr">작품</span></span>
                 </h2>
                 <div class="projects__grid">
                     <!-- Project 1: Fantasy -->
@@ -272,7 +273,8 @@
                                             <line x1="21" y1="21" x2="16.65" y2="16.65" />
                                         </svg>
                                     </a>
-                                    <a href="#" class="project-card__link" aria-label="View project">
+                                    <a href="https://www.artstation.com/mouon" class="project-card__link"
+                                        aria-label="View on ArtStation" target="_blank">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path
                                                 d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
@@ -282,12 +284,16 @@
                             </div>
                         </div>
                         <div class="project-card__content">
-                            <span class="project-card__category">Fantasy / RPG</span>
+                            <span class="project-card__category">Fantasy / RPG · 판타지</span>
                             <h3 class="project-card__title">Forgotten Citadel</h3>
+                            <p class="project-card__subtitle">잊혀진 성채</p>
                             <p class="project-card__description">
-                                A crumbling ancient fortress perched on a misty cliff,
-                                designed for an open-world RPG. Focus on atmospheric
-                                depth and environmental storytelling.
+                                A crumbling ancient fortress perched on a misty cliff.
+                                Focus on atmospheric depth and environmental storytelling.
+                            </p>
+                            <p class="project-card__description project-card__description--kr">
+                                안개 낀 절벽 위의 고대 요새.
+                                분위기의 깊이와 환경 스토리텔링에 집중한 작품.
                             </p>
                             <div class="project-card__tags">
                                 <span class="tag">Photoshop</span>
@@ -312,7 +318,8 @@
                                             <line x1="21" y1="21" x2="16.65" y2="16.65" />
                                         </svg>
                                     </a>
-                                    <a href="#" class="project-card__link" aria-label="View project">
+                                    <a href="https://www.artstation.com/mouon" class="project-card__link"
+                                        aria-label="View on ArtStation" target="_blank">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path
                                                 d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
@@ -322,12 +329,16 @@
                             </div>
                         </div>
                         <div class="project-card__content">
-                            <span class="project-card__category">Sci-Fi / Cyberpunk</span>
+                            <span class="project-card__category">Sci-Fi / Cyberpunk · 사이버펑크</span>
                             <h3 class="project-card__title">Neon District</h3>
+                            <p class="project-card__subtitle">네온 구역</p>
                             <p class="project-card__description">
-                                Rain-soaked streets of a dystopian megacity. Neon-drenched
-                                alleyways with volumetric lighting, designed for a
-                                cinematic game trailer.
+                                Rain-soaked streets of a dystopian megacity with
+                                neon-drenched alleyways and volumetric lighting.
+                            </p>
+                            <p class="project-card__description project-card__description--kr">
+                                비에 젖은 디스토피아 거대도시의 거리.
+                                네온으로 물든 골목과 볼류메트릭 라이팅.
                             </p>
                             <div class="project-card__tags">
                                 <span class="tag">Photoshop</span>
@@ -352,7 +363,8 @@
                                             <line x1="21" y1="21" x2="16.65" y2="16.65" />
                                         </svg>
                                     </a>
-                                    <a href="#" class="project-card__link" aria-label="View project">
+                                    <a href="https://www.artstation.com/mouon" class="project-card__link"
+                                        aria-label="View on ArtStation" target="_blank">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path
                                                 d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
@@ -362,12 +374,16 @@
                             </div>
                         </div>
                         <div class="project-card__content">
-                            <span class="project-card__category">Fantasy / Adventure</span>
+                            <span class="project-card__category">Fantasy / Adventure · 어드벤처</span>
                             <h3 class="project-card__title">Enchanted Hollow</h3>
+                            <p class="project-card__subtitle">마법의 숲</p>
                             <p class="project-card__description">
                                 A magical forest clearing illuminated by bioluminescent
-                                flora and wandering fireflies. Designed as a safe-zone
-                                environment for an adventure game.
+                                flora and wandering fireflies.
+                            </p>
+                            <p class="project-card__description project-card__description--kr">
+                                생물발광 식물과 반딧불이가 비추는
+                                마법의 숲속 공터.
                             </p>
                             <div class="project-card__tags">
                                 <span class="tag">Procreate</span>
@@ -377,6 +393,15 @@
                         </div>
                     </article>
                 </div>
+
+                <div class="projects__cta animate-on-scroll">
+                    <a href="https://www.artstation.com/mouon" target="_blank" class="btn btn--primary">
+                        <span>View All on ArtStation · 아트스테이션에서 모두 보기</span>
+                        <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                        </svg>
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -384,15 +409,21 @@
         <section class="section contact" id="contact">
             <div class="container">
                 <h2 class="section__title animate-on-scroll">
-                    <span class="section__title-number">04.</span> Contact
+                    <span class="section__title-number">04.</span>
+                    <span>Contact <span class="section__title-kr">연락처</span></span>
                 </h2>
                 <div class="contact__grid">
                     <div class="contact__info animate-on-scroll">
                         <h3 class="contact__heading">Let's Build Worlds Together</h3>
+                        <p class="contact__heading-kr">함께 세계를 만들어봐요</p>
                         <p class="contact__text">
                             I'm always open to new projects, collaborations, and creative
                             adventures. Whether you're building a game, a film, or a brand
                             — let's create something extraordinary.
+                        </p>
+                        <p class="contact__text contact__text--kr">
+                            새로운 프로젝트, 협업, 그리고 창의적인 모험에 항상 열려있습니다.
+                            게임, 영화, 브랜드 — 무엇이든 특별한 것을 함께 만들어요.
                         </p>
                         <div class="contact__details">
                             <div class="contact__detail">
@@ -403,7 +434,7 @@
                                         <polyline points="22,6 12,13 2,6" />
                                     </svg>
                                 </div>
-                                <span>hello@bgdesigner.art</span>
+                                <span>hello@mouon.art</span>
                             </div>
                             <div class="contact__detail">
                                 <div class="contact__detail-icon">
@@ -412,20 +443,15 @@
                                         <circle cx="12" cy="10" r="3" />
                                     </svg>
                                 </div>
-                                <span>Seoul, South Korea</span>
+                                <span>Seoul, South Korea · 서울</span>
                             </div>
                         </div>
                         <div class="contact__socials">
-                            <a href="#" class="social-link" aria-label="ArtStation">
+                            <a href="https://www.artstation.com/mouon" target="_blank" class="social-link"
+                                aria-label="ArtStation">
                                 <svg viewBox="0 0 24 24" fill="currentColor">
                                     <path
                                         d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.792-4.838H0zm24-2.218a2.408 2.408 0 0 0-.526-1.49L15.183 1.2a2.422 2.422 0 0 0-2.107-1.2H9.089L21.24 20.564l2.286-3.963a2.387 2.387 0 0 0 .474-1.096zM7.88 16.845L12.021 9.1 16.16 16.845z" />
-                                </svg>
-                            </a>
-                            <a href="#" class="social-link" aria-label="Behance">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M6.938 4.503c.702 0 1.34.06 1.92.188.577.13 1.07.33 1.485.61.41.28.733.65.96 1.12.225.47.34 1.05.34 1.73 0 .74-.17 1.36-.507 1.86-.338.5-.837.9-1.502 1.22.906.26 1.576.72 2.022 1.37.448.66.665 1.45.665 2.36 0 .75-.13 1.39-.41 1.93-.28.55-.67 1-1.16 1.35-.48.348-1.05.6-1.67.767-.63.165-1.27.25-1.945.25H0V4.51h6.938v-.007zM6.545 10.16c.63 0 1.14-.14 1.53-.44.39-.29.59-.75.59-1.36 0-.35-.07-.64-.2-.87-.13-.23-.32-.42-.55-.55-.23-.14-.5-.23-.81-.28-.31-.05-.64-.08-1-.08H3.19v3.58h3.355zm.18 5.76c.37 0 .72-.03 1.05-.1.33-.07.62-.19.87-.36s.45-.41.6-.71c.15-.31.22-.71.22-1.2 0-.95-.27-1.62-.82-2.01-.55-.38-1.27-.58-2.17-.58H3.19v4.96h3.535zM15.77 4.14h7.03v1.57h-7.03V4.14zM24 13.26c0-.945-.175-1.792-.524-2.54-.35-.748-.826-1.39-1.43-1.92-.604-.53-1.31-.932-2.12-1.21-.81-.276-1.68-.414-2.608-.414-.916 0-1.77.138-2.556.414-.79.278-1.48.68-2.07 1.21-.593.53-1.06 1.172-1.4 1.92-.34.75-.508 1.597-.508 2.54 0 .956.17 1.81.51 2.56.34.752.81 1.388 1.41 1.912.59.524 1.29.92 2.08 1.192.79.27 1.64.408 2.55.408.88 0 1.7-.135 2.44-.408.74-.272 1.38-.66 1.92-1.16.54-.504.97-1.112 1.29-1.82.32-.71.51-1.51.56-2.39h-6.12c.01.53-.09 1.01-.3 1.45-.21.44-.51.8-.9 1.09-.39.29-.84.45-1.36.45-.55 0-1.01-.1-1.39-.3-.38-.2-.69-.47-.93-.82-.24-.35-.42-.75-.53-1.21-.11-.46-.17-.93-.17-1.42h10.73zM18.62 11.77c-.02-.45-.1-.87-.25-1.26-.15-.39-.36-.72-.63-1-.27-.28-.59-.5-.96-.66-.37-.16-.79-.24-1.27-.24-.48 0-.91.07-1.29.22-.38.15-.71.36-.99.63-.28.27-.51.6-.67.98-.17.38-.27.79-.31 1.27h6.37z" />
                                 </svg>
                             </a>
                             <a href="#" class="social-link" aria-label="Instagram">
@@ -445,27 +471,23 @@
                     <form class="contact__form animate-on-scroll" id="contact-form">
                         <div class="form__group">
                             <input type="text" id="name" class="form__input" placeholder=" " required>
-                            <label for="name" class="form__label">Name</label>
-                            <div class="form__highlight"></div>
+                            <label for="name" class="form__label">Name · 이름</label>
                         </div>
                         <div class="form__group">
                             <input type="email" id="email" class="form__input" placeholder=" " required>
-                            <label for="email" class="form__label">Email</label>
-                            <div class="form__highlight"></div>
+                            <label for="email" class="form__label">Email · 이메일</label>
                         </div>
                         <div class="form__group">
                             <input type="text" id="subject" class="form__input" placeholder=" " required>
-                            <label for="subject" class="form__label">Subject</label>
-                            <div class="form__highlight"></div>
+                            <label for="subject" class="form__label">Subject · 제목</label>
                         </div>
                         <div class="form__group">
                             <textarea id="message" class="form__input form__textarea" placeholder=" " rows="5"
                                 required></textarea>
-                            <label for="message" class="form__label">Message</label>
-                            <div class="form__highlight"></div>
+                            <label for="message" class="form__label">Message · 메시지</label>
                         </div>
                         <button type="submit" class="btn btn--primary btn--full">
-                            <span>Send Message</span>
+                            <span>Send Message · 메시지 보내기</span>
                             <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
                                 <line x1="22" y1="2" x2="11" y2="13" />
@@ -482,14 +504,14 @@
     <footer class="footer">
         <div class="container footer__container">
             <p class="footer__text">
-                &copy; 2026 <span class="footer__highlight">BG Concept Designer</span>. All rights reserved.
+                &copy; 2026 <span class="footer__highlight">MOUON</span>. All rights reserved.
             </p>
-            <p class="footer__sub">Crafted with passion & pixels</p>
+            <p class="footer__sub">Crafted with passion & pixels · 열정과 픽셀로 만든 작품</p>
             <div class="footer__links">
                 <a href="#hero">Home</a>
                 <a href="#about">About</a>
                 <a href="#projects">Works</a>
-                <a href="#contact">Contact</a>
+                <a href="https://www.artstation.com/mouon" target="_blank">ArtStation</a>
             </div>
         </div>
     </footer>
