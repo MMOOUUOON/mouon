@@ -94,11 +94,11 @@ function initTypingAnimation() {
     if (!typingElement) return;
 
     const words = [
-        'crafting fantasy worlds ✨ 판타지 세계',
-        'cinematic landscapes 🎬 시네마틱 풍경',
-        'atmospheric environments 🌄 분위기 있는 환경',
-        'immersive game worlds 🎮 몰입감 있는 게임 월드',
-        'visual storytelling 🎨 비주얼 스토리텔링'
+        'crafting fantasy worlds ✨',
+        'cinematic landscapes 🎬',
+        'atmospheric environments 🌄',
+        'immersive game worlds 🎮',
+        'visual storytelling 🎨'
     ];
 
     let wordIndex = 0;
